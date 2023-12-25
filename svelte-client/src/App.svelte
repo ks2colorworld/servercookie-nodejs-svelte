@@ -8,7 +8,8 @@
     try {
       // HTTP GET 요청
       const response = await fetch(url, {
-        method: 'GET', credentials: 'include'
+        method: 'GET', 
+        // credentials: 'include'
       });
 
       // 응답값을 JSON 형식으로 파싱
