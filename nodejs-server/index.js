@@ -14,12 +14,12 @@ const app = express();
 // app.use(cors(corsOptions));
 
 // 모든 도메인 허용
-app.use(cors());
+// app.use(cors());
 
-// app.use(cors({
-//   origin: true,
-//   credentials: true
-// }));
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 
 
 app.get('/1', (req, res) => {
