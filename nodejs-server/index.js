@@ -31,7 +31,7 @@ app.get('/1', (req, res) => {
 
 app.get('/2', (req, res) => {
   // 요청 데이터에서 쿠키 확인
-  const usernameCookie = req.cookies?.username;
+  const usernameCookie = req.headers.cookie//?.username;
 
   if (usernameCookie) {
     // 쿠키가 존재하는 경우
