@@ -26,12 +26,12 @@ const app = express();
 // app.use(cors(corsOptions));
 
 // 모든 도메인 허용
-app.use(cors());
+// app.use(cors());
 
-// app.use(cors({
-//   origin: true,
-//   credentials: true
-// }));
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 
 
 app.get('/1', (req, res) => {
@@ -41,8 +41,6 @@ app.get('/1', (req, res) => {
     httpOnly: true,
     sameSite: 'None',
     secure: true,
-    domain: 'localhost',
-    path: '/',
   });
 
   // JSON 형식의 응답 전송
