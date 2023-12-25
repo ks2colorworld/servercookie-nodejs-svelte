@@ -25,7 +25,7 @@
 
 <main>
   <h1>Svelte HTTP GET 요청 예제</h1>
-  <button on:click={() => fetchData('http://localhost:3000/1', '응답값1')}>GET 요청 - 응답값1</button>
-  <button on:click={() => fetchData('http://localhost:3000/2', '응답값2')}>GET 요청 - 응답값2</button>
+  <button on:click={() => fetchData('http://127.0.0.1:3000/1', '응답값1')}>GET 요청 - 응답값1</button>
+  <button on:click={() => fetchData('http://127.0.0.1:3000/2', '응답값2')}>GET 요청 - 응답값2</button>
   <pre>{$responseData}</pre>
 </main>

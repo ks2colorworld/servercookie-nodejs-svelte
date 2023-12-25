@@ -4,21 +4,21 @@ const session = require('express-session'); // express-session 추가
 const app = express();
 
 // 특정 사이트만 허용하는 CORS 설정
-// const corsOptions = {
-//   origin: [
-//     'http://localhost:8080',
-//   ],
-//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-// };
+const corsOptions = {
+  origin: [
+    'http://localhost:8080',
+  ],
+    credentials: true
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // 모든 도메인 허용
 // app.use(cors());
-app.use(cors({
-  origin: true,
-  credentials: true
-}));
+// app.use(cors({
+//   origin: true,
+//   credentials: true
+// }));
 
 
 app.get('/1', (req, res) => {
