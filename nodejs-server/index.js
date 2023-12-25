@@ -1,6 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session'); // express-session 추가
+
+// fs and https 모듈 가져오기
+const https = require("https");
+const fs = require("fs");
+
+// certificate와 private key 가져오기
+// ------------------- STEP 2
+const options = {
+  key: fs.readFileSync("./https/cert.key"),
+  cert: fs.readFileSync("./https/cert.crt"),
+};
+
 const app = express();
 
 // 특정 사이트만 허용하는 CORS 설정
@@ -24,7 +36,14 @@ app.use(cors());
 
 app.get('/1', (req, res) => {
   // 쿠키 생성
-  res.cookie('username', 'john_doe', { maxAge: 900000, httpOnly: true });
+  res.cookie('username', 'john_doe', {
+    maxAge: 900000,
+    httpOnly: true,
+    sameSite: 'None',
+    secure: true,
+    domain: 'localhost',
+    path: '/',
+  });
 
   // JSON 형식의 응답 전송
   res.json({ message: '쿠키가 설정되었습니다.' });
@@ -46,4 +65,9 @@ app.get('/2', (req, res) => {
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다..`);
+});
+
+// https 의존성으로 certificate와 private key로 새로운 서버를 시작
+https.createServer(options, app).listen(3001, () => {
+  console.log(`HTTPS server started on port 3001`);
 });
