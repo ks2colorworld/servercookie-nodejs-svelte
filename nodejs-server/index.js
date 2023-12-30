@@ -24,7 +24,12 @@ app.use(cors({
 
 app.get('/1', (req, res) => {
   // 쿠키 생성
-  res.cookie('username', 'john_doe', { maxAge: 900000, httpOnly: true });
+  res.cookie('username', 'john_doe', {
+    maxAge: 900000,
+    httpOnly: true,
+    sameSite: 'None',
+    secure: true,
+  });
 
   // JSON 형식의 응답 전송
   res.json({ message: '쿠키가 설정되었습니다.' });
