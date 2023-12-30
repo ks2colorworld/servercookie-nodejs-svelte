@@ -18,7 +18,7 @@
     - ### (if https) `https://localhost:8080` (`main` branch) + need https settings ([issue#1](https://github.com/ks2colorworld/servercookie-nodejs-svelte/issues/1))
 
 
-## Deploy demo : 
+## Demo deployed : 
 - ### target branch name : [deploy-render.com](https://github.com/ks2colorworld/servercookie-nodejs-svelte/tree/deploy-render.com)
 - client
     - https://server-cookie-client.onrender.com/
