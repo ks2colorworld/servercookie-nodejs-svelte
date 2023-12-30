@@ -24,6 +24,6 @@
     - https://server-cookie-client.onrender.com/
     - http://localhost:8080 (if you build & run locally)
 
-- server
+- server (very slow when running for the first time)
     - (response server-cookie)[https://server-cookie.onrender.com/1](https://server-cookie.onrender.com/1)
     - (request server-cookie)[https://server-cookie.onrender.com/2](https://server-cookie.onrender.com/2)
