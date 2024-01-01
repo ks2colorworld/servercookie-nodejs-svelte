@@ -33,7 +33,11 @@ app.use(cors({
 }));
 
 
-app.get('/1', (req, res) => {
+app.get('/1', makeCookie);
+
+app.get('/2', checkCookie);
+
+function makeCookie(req, res) {
   // 쿠키 생성
   res.cookie('username', 'john_doe', {
     maxAge: 900000,
@@ -44,9 +48,9 @@ app.get('/1', (req, res) => {
 
   // JSON 형식의 응답 전송
   res.json({ message: '쿠키가 설정되었습니다.' });
-});
+}
 
-app.get('/2', (req, res) => {
+function checkCookie(req, res) {
   // 요청 데이터에서 쿠키 확인
   const usernameCookie = req.headers.cookie//?.username;
 
@@ -57,7 +61,7 @@ app.get('/2', (req, res) => {
     // 쿠키가 존재하지 않는 경우
     res.json({ message: '쿠키가 존재하지 않습니다.' });
   }
-});
+}
 
 const PORT = 3000;
 app.listen(PORT, () => {
