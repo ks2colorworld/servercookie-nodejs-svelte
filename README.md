@@ -22,8 +22,10 @@
 - ### target branch name : [deploy-render.com](https://github.com/ks2colorworld/servercookie-nodejs-svelte/tree/deploy-render.com)
 - client
     - https://server-cookie-client.onrender.com/
+    - https://servercookie-nodejs-svelte.vercel.app/ (added diff domain) 
     - http://localhost:8080 (if you build & run locally)
 
 - server (very slow when running for the first time)
-    - (response server-cookie)[https://server-cookie.onrender.com/1](https://server-cookie.onrender.com/1)
-    - (request server-cookie)[https://server-cookie.onrender.com/2](https://server-cookie.onrender.com/2)
+    - (GET-make server-cookie)[https://server-cookie.onrender.com/1](https://server-cookie.onrender.com/1)
+    - (check server-cookie)[https://server-cookie.onrender.com/2](https://server-cookie.onrender.com/2)
+    - (POST-make server-cookie)[https://server-cookie.onrender.com/3](https://server-cookie.onrender.com/3)
