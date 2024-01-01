@@ -37,6 +37,10 @@ app.get('/1', makeCookie);
 
 app.get('/2', checkCookie);
 
+app.post('/3', makeCookie);
+
+app.post('/4', checkCookie);
+
 function makeCookie(req, res) {
   // 쿠키 생성
   res.cookie('username', 'john_doe', {
