@@ -1,22 +1,26 @@
 <script>
-  import { onMount } from 'svelte';
-  import { readable, writable } from 'svelte/store';
+  import { writable } from 'svelte/store';
+  import axios from 'axios';
 
   let responseData = writable('');
 
   const fetchData = async (url, message) => {
     try {
-      // HTTP GET 요청
-      const response = await fetch(url, {
-        method: 'GET', 
-        credentials: 'include'
-      });
+
+        // HTTP GET 요청
+        // const response = await fetch(url, {
+        //   method: 'GET',
+        //   credentials: 'include',
+        // });
+
+        const response = await axios.get(url, { withCredentials: true });
 
       // 응답값을 JSON 형식으로 파싱
-      const data = await response.json();
+      // const data = await response.json();
 
       // 응답값을 변수에 할당
-      responseData.update(prev => `${message}\n${JSON.stringify(data, null, 2)}\n${prev}`);
+      // responseData.update(prev => `${message}\n${JSON.stringify(data, null, 2)}\n${prev}`);
+      responseData.update(prev => `${message}\n${JSON.stringify(response.data, null, 2)}\n${prev}`);
     } catch (error) {
       console.error('에러 발생:', error);
       responseData.update(prev => `${message}\n에러가 발생했습니다.\n${prev}`);
