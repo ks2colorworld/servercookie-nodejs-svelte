@@ -25,8 +25,16 @@
 </script>
 
 <main>
-  <h1>Svelte HTTP GET 요청 예제</h1>
-  <button on:click={() => fetchData('https://127.0.0.1:3001/1', '응답값1')}>GET 요청 (쿠키설정) - 응답값1</button>
-  <button on:click={() => fetchData('https://127.0.0.1:3001/2', '응답값2')}>GET 요청 (쿠키확인) - 응답값2</button>
+  <h3>http://127.0.0.1:3000 get (username=kslee)</h3>
+  <p>
+    <button on:click={() => fetchData('http://127.0.0.1:3000/1?username=kslee', '응답값1')}>GET 요청 (쿠키설정) - 응답값1</button>
+  </p>
+  <h3>https://127.0.0.1:3001 get (username=leekeunsouk)</h3>
+  <p>
+    <button on:click={() => fetchData('https://127.0.0.1:3001/1?username=leekeunsouk', '응답값1')}>GET 요청 (쿠키설정) - 응답값1</button>
+  </p>
+  <p>
+    <button on:click={() => fetchData('http://127.0.0.1:3000/2', '응답값2')}>GET 요청 (쿠키확인) - 응답값2</button>
+  </p>
   <pre>{$responseData}</pre>
 </main>
