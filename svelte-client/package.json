@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear --http2 --cert ./https/cert.crt --key ./https/cert.key"
+    "start": "sirv public --no-clear",
+    "start-for-https": "sirv public --no-clear --http2 --cert ./https/cert.crt --key ./https/cert.key"
   },
   "engines": {
     "node": ">=18.18.2"
