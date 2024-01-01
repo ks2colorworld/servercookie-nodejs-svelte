@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // fs and https 모듈 가져오기
 const https = require("https");
@@ -32,6 +33,7 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(bodyParser.json());
 
 app.get('/1', makeCookie);
 
@@ -42,8 +44,13 @@ app.post('/3', makeCookie);
 app.post('/4', checkCookie);
 
 function makeCookie(req, res) {
+  const data = req.body?.data ? req.body.data : req.query;
+  console.log(req.body);
+
+  const username = data.username ? data.username : 'john_doe';
+  console.log(username);
   // 쿠키 생성
-  res.cookie('username', 'john_doe', {
+  res.cookie('username', username, {
     maxAge: 900000,
     httpOnly: true,
     sameSite: 'None',
@@ -51,7 +58,7 @@ function makeCookie(req, res) {
   });
 
   // JSON 형식의 응답 전송
-  res.json({ message: '쿠키가 설정되었습니다.' });
+  res.json({ message: '쿠키가 설정되었습니다.', username });
 }
 
 function checkCookie(req, res) {
