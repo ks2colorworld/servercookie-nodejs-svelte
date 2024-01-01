@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session'); // express-session 추가
+const bodyParser = require('body-parser');
 
 // fs and https 모듈 가져오기
 const https = require("https");
@@ -33,10 +33,24 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(bodyParser.json());
 
-app.get('/1', (req, res) => {
+app.get('/1', makeCookie);
+
+app.get('/2', checkCookie);
+
+app.post('/3', makeCookie);
+
+app.post('/4', checkCookie);
+
+function makeCookie(req, res) {
+  const data = req.body?.data ? req.body.data : req.query;
+  console.log(req.body);
+
+  const username = data.username ? data.username : 'john_doe';
+  console.log(username);
   // 쿠키 생성
-  res.cookie('username', 'john_doe', {
+  res.cookie('username', username, {
     maxAge: 900000,
     httpOnly: true,
     sameSite: 'None',
@@ -44,10 +58,10 @@ app.get('/1', (req, res) => {
   });
 
   // JSON 형식의 응답 전송
-  res.json({ message: '쿠키가 설정되었습니다.' });
-});
+  res.json({ message: '쿠키가 설정되었습니다.', username });
+}
 
-app.get('/2', (req, res) => {
+function checkCookie(req, res) {
   // 요청 데이터에서 쿠키 확인
   const usernameCookie = req.headers.cookie//?.username;
 
@@ -58,7 +72,7 @@ app.get('/2', (req, res) => {
     // 쿠키가 존재하지 않는 경우
     res.json({ message: '쿠키가 존재하지 않습니다.' });
   }
-});
+}
 
 const PORT = 3000;
 app.listen(PORT, () => {
