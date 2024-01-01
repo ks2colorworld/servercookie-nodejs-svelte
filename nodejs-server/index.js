@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const session = require('express-session'); // express-session 추가
 
 // fs and https 모듈 가져오기
 const https = require("https");
