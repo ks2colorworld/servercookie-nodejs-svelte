@@ -3,15 +3,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // fs and https 모듈 가져오기
-const https = require("https");
-const fs = require("fs");
+// const https = require("https");
+// const fs = require("fs");
 
 // certificate와 private key 가져오기
 // ------------------- STEP 2
-const options = {
-  key: fs.readFileSync("./https/cert.key"),
-  cert: fs.readFileSync("./https/cert.crt"),
-};
+// const options = {
+//   key: fs.readFileSync("./https/cert.key"),
+//   cert: fs.readFileSync("./https/cert.crt"),
+// };
 
 const app = express();
 
@@ -80,6 +80,6 @@ app.listen(PORT, () => {
 });
 
 // https 의존성으로 certificate와 private key로 새로운 서버를 시작
-https.createServer(options, app).listen(3001, () => {
-  console.log(`HTTPS server started on port 3001`);
-});
+// https.createServer(options, app).listen(3001, () => {
+//   console.log(`HTTPS server started on port 3001`);
+// });
