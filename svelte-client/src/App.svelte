@@ -1,9 +1,23 @@
 <script>
+  import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import axios from 'axios';
 
+	let name = process.env.APP_NAME;
   let responseData = writable('');
 
+  onMount(()=>{
+    // Input
+    console.log(process.env.APP_NAME);
+    console.log(process.env.DEBUG); 
+    // process.env.APP_NAME = '1111';
+    // process.env.DEBUG = false;
+    // process.env.DEBUG = true;
+    if (process.env.DEBUG == true) { // https://www.npmjs.com/package/@rollup/plugin-replace
+    // if (process.env.DEBUG == false) {
+      console.log(process.env.DEBUG);
+    }
+  });
   const fetchData = async (url, message) => {
     try {
 
@@ -45,6 +59,7 @@
 </script>
 
 <main>
+  <h1>Hello {name}!</h1>
   <h3>http://127.0.0.1:3000 get (username=kslee)</h3>
   <p>
     <button on:click={() => fetchData('http://127.0.0.1:3000/1?username=kslee', '응답값1')}>GET 요청 (쿠키설정) - 응답값1</button>

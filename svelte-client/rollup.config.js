@@ -5,8 +5,13 @@ import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import css from 'rollup-plugin-css-only';
+import replace from "@rollup/plugin-replace";
+import dotenv from "dotenv";
 
 const production = !process.env.ROLLUP_WATCH;
+const environment = process.env.NODE_ENV || 'development';
+dotenv.config({ path: `.env.${environment}` }); // require('dotenv').config({ path: `.env.${environment}` });
+const APP_NAME = process.env.APP_NAME || 'defaultAppName';
 
 function serve() {
 	let server;
@@ -38,6 +43,13 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		replace({
+			'process.env.NODE_ENV': JSON.stringify(environment),//environment,//
+			'process.env.APP_NAME': JSON.stringify(APP_NAME),//APP_NAME,//process.env.APP_NAME,//JSON.stringify(process.env.APP_NAME),//
+
+			'process.env.DEBUG': 'false', // https://www.npmjs.com/package/@rollup/plugin-replace
+			preventAssignment: true, // false, // 
+		}),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
